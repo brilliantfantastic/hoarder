@@ -1,5 +1,3 @@
-require 'tmpdir'
-
 module Hoarder
   module Passbook
     class Pass
@@ -9,20 +7,7 @@ module Hoarder
       end
 
       def file
-        dir = Dir.mktmpdir 'pkpass'
-        @name ||= 'pass'
-        file = File.open("#{dir}/#{@name}.pkpass", 'w')
-        file.write Archiver.new(file_list).stream
-        file.close
-        file
-      end
-
-      private
-
-      def file_list
-        [
-          { 'pass.json' => to_json }
-        ]
+        PKPassFile.new(self).file
       end
     end
   end
