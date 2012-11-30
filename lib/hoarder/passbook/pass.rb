@@ -7,7 +7,7 @@ module Hoarder
       end
 
       def file
-        PKPassFile.new(self).file
+        @file ||= PKPassFile.new(self).file
       end
     end
   end

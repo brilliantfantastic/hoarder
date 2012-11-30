@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Hoarder::Passbook::Pass do
   subject { Hoarder::Passbook::Pass.new }
   describe '.file' do
+    after(:each) { subject.file.delete }
+
     it 'creates a pkpass archive' do
       File.extname(subject.file.path).should == ".pkpass"
     end
