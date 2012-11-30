@@ -4,6 +4,7 @@ module Hoarder
   module Passbook
     class PKPassFile
       def initialize(pass)
+        raise ArgumentError, "pass cannot be nil" if pass.nil?
         @pass = pass
       end
 

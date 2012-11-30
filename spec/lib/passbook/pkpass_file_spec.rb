@@ -4,6 +4,12 @@ describe Hoarder::Passbook::PKPassFile do
   let(:pass) { Hoarder::Passbook::Pass.new }
   subject { Hoarder::Passbook::PKPassFile.new(pass) }
 
+  describe '.initialize' do
+    it 'requires a pass' do
+      expect { Hoarder::Passbook::PKPassFile.new(nil) }.to raise_error(ArgumentError)
+    end
+  end
+
   describe '.file' do
     after(:each) { File.delete subject.file.path }
 
