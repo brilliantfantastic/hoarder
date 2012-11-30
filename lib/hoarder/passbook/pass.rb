@@ -5,10 +5,6 @@ module Hoarder
 
       def to_json
       end
-
-      def file
-        @file ||= PKPassFile.new(self).file
-      end
     end
   end
 end
