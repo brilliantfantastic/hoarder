@@ -11,6 +11,7 @@ describe Hoarder::Passbook::PKPassFile do
   end
 
   describe '.file' do
+    before(:all) { configure }
     after(:each) { File.delete subject.file.path }
 
     it 'creates a pkpass archive' do
@@ -28,6 +29,10 @@ describe Hoarder::Passbook::PKPassFile do
 
     it 'contains a pass json file' do
       unzipped(subject.file).should include 'pass.json'
+    end
+
+    xit 'contains a manifest json file' do
+      unzipped(subject.file).should include 'manifest.json'
     end
   end
 end

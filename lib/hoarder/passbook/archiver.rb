@@ -10,10 +10,8 @@ module Hoarder
       def stream
         Zip::ZipOutputStream.write_buffer do |zip|
           @entries.each do |entry|
-            entry.each do |k,v|
-              zip.put_next_entry k
-              zip.write v
-            end
+            zip.put_next_entry entry.archive.name
+            zip.write entry.archive.stream
           end
         end
       end

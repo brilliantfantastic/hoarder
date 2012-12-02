@@ -9,12 +9,12 @@ module Hoarder
       end
 
       def manifest
-        @manifest ||= Manifest.new
+        @manifest ||= create_manifest
       end
 
       def file
         file = temporary_file
-        file.write Archiver.new(file_list).stream.string
+        file.write Archiver.new(manifest.files).stream.string
         file.close
         file
       end
@@ -27,10 +27,10 @@ module Hoarder
         File.open("#{dir}/#{name}.pkpass", 'w')
       end
 
-      def file_list
-        [
-          { 'pass.json' => @pass.to_json }
-        ]
+      def create_manifest
+        m = Manifest.new
+        m << @pass
+        m
       end
     end
   end

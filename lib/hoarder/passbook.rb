@@ -1,4 +1,5 @@
 require_relative 'passbook/configuration'
+require_relative 'passbook/file'
 require_relative 'passbook/archiver'
 require_relative 'passbook/pkpass_file'
 require_relative 'passbook/manifest'
