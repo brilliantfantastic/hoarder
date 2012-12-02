@@ -8,6 +8,10 @@ module Hoarder
         @pass = pass
       end
 
+      def manifest
+        @manifest ||= Manifest.new
+      end
+
       def file
         file = temporary_file
         file.write Archiver.new(file_list).stream.string
