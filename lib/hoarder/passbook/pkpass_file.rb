@@ -30,6 +30,7 @@ module Hoarder
       def create_manifest
         m = Manifest.new
         m << @pass
+        m << m
         m
       end
     end

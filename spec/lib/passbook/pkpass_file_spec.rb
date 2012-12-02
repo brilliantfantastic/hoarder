@@ -31,7 +31,7 @@ describe Hoarder::Passbook::PKPassFile do
       unzipped(subject.file).should include 'pass.json'
     end
 
-    xit 'contains a manifest json file' do
+    it 'contains a manifest json file' do
       unzipped(subject.file).should include 'manifest.json'
     end
   end
