@@ -19,8 +19,9 @@ module Hoarder
       private
 
       def add_config_files
+        base_path = Hoarder::Passbook.configuration.base_path
         Hoarder::Passbook.configuration.files.each do |file|
-          @files << file
+          @files << File.new(File.join(base_path, file))
         end
       end
     end

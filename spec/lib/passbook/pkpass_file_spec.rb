@@ -26,7 +26,7 @@ describe Hoarder::Passbook::PKPassFile do
       File.basename(subject.file.path, '.pkpass').should == "Jimmy Page"
     end
 
-    it 'contains a json file' do
+    it 'contains a pass json file' do
       unzipped(subject.file).should include 'pass.json'
     end
   end
