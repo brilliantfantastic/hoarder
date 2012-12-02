@@ -23,4 +23,11 @@ describe Hoarder::Passbook::Configuration do
       subject.icon_2x.should == 'icon@2x.png'
     end
   end
+
+  describe '.files' do
+    it 'contains all the files from the configuration' do
+      subject.files.should == [subject.logo, subject.logo_2x,
+                               subject.icon, subject.icon_2x]
+    end
+  end
 end

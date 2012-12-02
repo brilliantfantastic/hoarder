@@ -14,6 +14,10 @@ module Hoarder
         @icon = 'icon.png'
         @icon_2x = 'icon@2x.png'
       end
+
+      def files
+        [@logo, @logo_2x, @icon, @icon_2x]
+      end
     end
   end
 end
