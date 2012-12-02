@@ -46,4 +46,15 @@ describe Hoarder::Passbook::Manifest do
       names(subject.files).should include config.logo_2x
     end
   end
+
+  describe ".archive" do
+    it "sets the name to manifest.json" do
+      subject.archive.name.should == "manifest.json"
+    end
+
+    it "sets the stream to the json" do
+      subject.stub(:to_json => "hello: world")
+      subject.archive.stream.should == subject.to_json
+    end
+  end
 end

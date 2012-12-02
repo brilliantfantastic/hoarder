@@ -1,3 +1,5 @@
+require 'ostruct'
+
 module Hoarder
   module Passbook
     class Manifest
@@ -14,6 +16,14 @@ module Hoarder
 
       def remove(file)
         @files.delete file
+      end
+
+      def to_json
+      end
+
+      def archive
+        OpenStruct.new name:    "manifest.json",
+                       stream:  self.to_json
       end
 
       private
