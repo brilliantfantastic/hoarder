@@ -57,4 +57,35 @@ describe Hoarder::Passbook::Manifest do
       subject.archive.stream.should == subject.to_json
     end
   end
+
+  describe ".to_json" do
+    it "creates a key for each file" do
+      hash = JSON.parse subject.to_json
+      hash.keys.should include config.icon
+      hash.keys.should include config.icon_2x
+      hash.keys.should include config.logo
+      hash.keys.should include config.logo_2x
+    end
+
+    it "should not include the manifest file itself" do
+      subject << subject
+      hash = JSON.parse subject.to_json
+      hash.keys.should_not include "manifest.json"
+    end
+
+    it "should not include files that have null streams" do
+      pass = Hoarder::Passbook::Pass.new
+      pass.stub(:to_json => nil)
+      subject << pass
+      hash = JSON.parse subject.to_json
+      hash.keys.should_not include pass.archive.name
+    end
+
+    it "creates a sha for each file" do
+      subject.to_json[config.icon].should_not be_nil
+      subject.to_json[config.icon_2x].should_not be_nil
+      subject.to_json[config.logo].should_not be_nil
+      subject.to_json[config.logo_2x].should_not be_nil
+    end
+  end
 end

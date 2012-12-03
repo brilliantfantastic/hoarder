@@ -1,4 +1,5 @@
 require 'ostruct'
+require 'json'
 
 module Hoarder
   module Passbook
@@ -19,6 +20,14 @@ module Hoarder
       end
 
       def to_json
+        shas = {}
+        @files.delete_if { |file| file.class == self.class }.each do |file|
+          stream = file.archive.stream
+          unless stream.nil?
+            shas[file.archive.name] = Digest::SHA1.hexdigest(stream)
+          end
+        end
+        shas.to_json
       end
 
       def archive
