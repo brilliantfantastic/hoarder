@@ -5,7 +5,10 @@ module Hoarder
                     :logo,
                     :logo_2x,
                     :icon,
-                    :icon_2x
+                    :icon_2x,
+                    :certificate_path,
+                    :certificate_password,
+                    :wwdc_certificate_path
 
       def initialize
         @base_path = '.'
